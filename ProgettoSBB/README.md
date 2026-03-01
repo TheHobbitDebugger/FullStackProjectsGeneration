@@ -79,12 +79,6 @@ ProgettoSBB/
 
 Il database viene creato automaticamente all'avvio dell'applicazione (`createDatabaseIfNotExist=true`).
 
-## Demo
-
-[Demo.mp4](./Demo.mp4)
-
-![Demo.gif](./Demo.gif)
-
 ## Come eseguire
 
 **Backend** (richiede MySQL su localhost:3306):
