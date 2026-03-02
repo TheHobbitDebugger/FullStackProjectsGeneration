@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,24 +25,21 @@ public class VisitorAPI
     @Autowired
     private VisitorService service;
 
+    // GET /vcm/api/visitors — ritorna tutti i visitatori
     @GetMapping
     public List<VisitorDTO> findAll()
     {
         return service.findAll();
     }
 
+    // GET /vcm/api/visitors/{id} — ritorna un visitatore per id
     @GetMapping("/{id}")
     public VisitorDTO findById(@PathVariable int id)
     {
         return service.findById(id);
     }
 
-    @GetMapping("/search")
-    public List<VisitorDTO> findByLastName(@RequestParam String lastName)
-    {
-        return service.findByLastName(lastName);
-    }
-
+    // POST /vcm/api/visitors — crea un nuovo visitatore, ritorna 201 se va bene o 400 se i dati non sono validi
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody VisitorDTO dto)
     {
@@ -58,6 +54,8 @@ public class VisitorAPI
         }
     }
 
+    // PUT /vcm/api/visitors/{id} — aggiorna un visitatore esistente
+    // prendo l'id dal path e lo setto nel dto prima di passarlo al service
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable int id, @RequestBody VisitorDTO dto)
     {
@@ -73,6 +71,7 @@ public class VisitorAPI
         }
     }
 
+    // DELETE /vcm/api/visitors/{id} — elimina un visitatore, ritorna 204 senza corpo
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id)
     {

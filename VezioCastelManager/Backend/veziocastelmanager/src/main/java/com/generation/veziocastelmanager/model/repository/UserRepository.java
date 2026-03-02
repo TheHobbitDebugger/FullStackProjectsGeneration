@@ -1,4 +1,4 @@
-package com.generation.veziocastelmanager.repository;
+package com.generation.veziocastelmanager.model.repository;
 
 import com.generation.veziocastelmanager.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer>
 {
     Optional<User>      findByUsername(String username  );
-    Optional<User>      findByEmail(String email        );
 }

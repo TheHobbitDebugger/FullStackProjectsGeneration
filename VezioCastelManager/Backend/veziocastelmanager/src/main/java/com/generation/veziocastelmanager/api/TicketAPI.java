@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,36 +25,23 @@ public class TicketAPI
     @Autowired
     private TicketService service;
 
+    // GET /vcm/api/tickets — ritorna tutti i biglietti
     @GetMapping
     public List<TicketDTO> findAll()
     {
         return service.findAll();
     }
 
+    // GET /vcm/api/tickets/{id} — ritorna un biglietto per id
     @GetMapping("/{id}")
     public TicketDTO findById(@PathVariable int id)
     {
         return service.findById(id);
     }
 
-    @GetMapping("/seller/{sellerId}")
-    public List<TicketDTO> findBySellerId(@PathVariable int sellerId)
-    {
-        return service.findBySellerId(sellerId);
-    }
-
-    @GetMapping("/visitor/{visitorId}")
-    public List<TicketDTO> findByVisitorId(@PathVariable int visitorId)
-    {
-        return service.findByVisitorId(visitorId);
-    }
-
-    @GetMapping("/date")
-    public List<TicketDTO> findByDate(@RequestParam LocalDate date)
-    {
-        return service.findByDate(date);
-    }
-
+    // POST /vcm/api/tickets — crea un nuovo biglietto
+    // il prezzo viene calcolato automaticamente nel service in base all'età del visitatore
+    // ritorna 201 se va bene o 400 se i dati non sono validi
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody TicketDTO dto)
     {
@@ -71,6 +56,8 @@ public class TicketAPI
         }
     }
 
+    // PUT /vcm/api/tickets/{id} — aggiorna un biglietto esistente
+    // prendo l'id dal path e lo setto nel dto prima di passarlo al service
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable int id, @RequestBody TicketDTO dto)
     {
@@ -86,6 +73,7 @@ public class TicketAPI
         }
     }
 
+    // DELETE /vcm/api/tickets/{id} — elimina un biglietto, ritorna 204 senza corpo
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id)
     {

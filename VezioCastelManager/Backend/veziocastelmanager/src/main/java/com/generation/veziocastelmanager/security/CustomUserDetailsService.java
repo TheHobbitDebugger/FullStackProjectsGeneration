@@ -1,7 +1,7 @@
 package com.generation.veziocastelmanager.security;
 
 import com.generation.veziocastelmanager.model.entities.User;
-import com.generation.veziocastelmanager.repository.UserRepository;
+import com.generation.veziocastelmanager.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

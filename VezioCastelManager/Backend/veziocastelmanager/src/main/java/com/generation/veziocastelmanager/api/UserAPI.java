@@ -27,19 +27,21 @@ public class UserAPI
     @Autowired
     private UserService service;
 
-
+    // GET /vcm/api/users — ritorna tutti gli utenti
     @GetMapping
     public List<UserDTO> findAll()
     {
         return service.findAll();
     }
 
+    // GET /vcm/api/users/{id} — ritorna un utente per id
     @GetMapping("/{id}")
     public UserDTO findById(@PathVariable int id)
     {
         return service.findById(id);
     }
 
+    // POST /vcm/api/users — crea un nuovo utente, ritorna 201 se va bene o 400 se i dati non sono validi
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody UserDTO dto)
     {
@@ -54,6 +56,8 @@ public class UserAPI
         }
     }
 
+    // PUT /vcm/api/users/{id} — aggiorna un utente esistente
+    // prendo l'id dal path e lo setto nel dto prima di passarlo al service
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable int id, @RequestBody UserDTO dto)
     {
@@ -69,6 +73,7 @@ public class UserAPI
         }
     }
 
+    // DELETE /vcm/api/users/{id} — elimina un utente, ritorna 204 senza corpo
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id)
     {
@@ -76,6 +81,7 @@ public class UserAPI
         return ResponseEntity.noContent().build();
     }
 
+    // POST /vcm/api/users/login — riceve username e password, ritorna il token JWT se le credenziali sono corrette
     @PostMapping("/login")
     public TokenDTO login(@RequestBody LoginDTO loginDTO)
     {

@@ -1,4 +1,4 @@
-package com.generation.veziocastelmanager.repository;
+package com.generation.veziocastelmanager.model.repository;
 
 import com.generation.veziocastelmanager.model.entities.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Integer>
 {
-    List<Ticket>        findBySellerId(int sellerId     );
-    List<Ticket>        findByVisitorId(int visitorId   );
-    List<Ticket>        findByDate(LocalDate date       );
+
 }
