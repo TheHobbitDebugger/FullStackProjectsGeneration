@@ -1,0 +1,38 @@
+<!-- solo le stanze libere per il determinato hotel -->
+<div class="intervalpicker w3-row">
+    <div>
+        <h2> Inserimento prenotazione </h2>
+    </div>
+    <div class="w3-col m3 l3 s12">
+        <form>
+            Arrivo 
+            {{from()}}
+            <input type="date" class="w3-input" name="from" [(ngModel)]="from" />
+            Partenza 
+            {{to()}}
+            <input type="date" class="w3-input" name="to" [(ngModel)]="to" />
+        </form>
+        Ospite
+        <app-guest-picker [(guest)]="guest"></app-guest-picker>
+        <input type="text" readonly class="w3-input" 
+        [value]="selectedCategoryLabel()" 
+        />
+        <form>
+            Prezzo
+            <input type="number" name="price" class="w3-input" [(ngModel)]="price" />
+            Note
+            <input type="text" name="notes" class="w3-input" [(ngModel)]="notes" />
+        </form>
+        <input type="button" class="w3-btn w3-light-grey w3-input" value="Book" (click)="book()" [disabled]="!valid()" />
+
+    </div>
+    <div class="w3-rest" style="padding-left:2em;vertical-align: top;">
+        <div class="roompicker">
+        @for(category of freeRoomsByCategories(); track category.id){
+            <app-room-picker [roomCategory]="category" [(selected)]="selectedRoomWithCategory" />
+        }
+        </div>
+    </div>
+    
+</div>
+

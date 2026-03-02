@@ -1,0 +1,21 @@
+<div class="stdpadding w3-row w3-card-2" id="topmenu" style="display:flex; flex-wrap:wrap">
+    <div id="logodiv" class="w3-col s12 m1 l1">
+        <img src="img/logo.jpg" routerLink="" />
+    </div>
+    <div class="w3-col m9 l9 s12" style="align-self:flex-end">
+        <a routerLink=""> Home </a> |
+        <a routerLink="guests"> Guests </a> |
+        <a routerLink="rooms"> Rooms </a> |
+        <!-- collegamento a form new booking -->
+        <a routerLink="book"> Book </a> 
+    </div>
+    <div class="w3-col m2 l2 s12 w3-right-align" id="userbox" style="align-self:flex-end" >
+        @if(loggedUser()!=null) {
+            {{loggedUser()!.firstName}} {{loggedUser()!.lastName}} <br />
+            {{loggedUser()!.hotel.name}} <br />
+            <button (click)="logout()"> Logout </button>
+        }@else{
+            <div> loading... </div>   
+        }
+    </div>
+</div>

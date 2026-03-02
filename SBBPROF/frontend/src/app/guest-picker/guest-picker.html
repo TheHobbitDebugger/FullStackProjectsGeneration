@@ -1,0 +1,20 @@
+<div class="guestpicker" style="padding-left:0px">
+    <form>
+        <input 
+                type="text" 
+                class="w3-input" 
+                name="key" 
+                [(ngModel)]="key" 
+                (dblClick)="clear()"
+                placeholder="inserire parte del cognome o del codice fiscale"
+                (blur)="doSearch()"
+        />
+        <div class="resultlist">
+            @if(guest()==null){
+                @for(g of matches(); track g.id){
+                    <div (click)="select(g)" class="match"> {{g.ssn}} {{g.firstName}} {{g.lastName}} {{g.city}}</div>
+                }
+            }
+        </div>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+.resultlist{
+    position:fixed;
+    z-index:100;
+    max-height:100px;
+    overflow-y:scroll;
+    width:500px;
+    background-color:white;
+    color:black;
+}
+
+.match{
+    padding-left:0px;
+    padding-bottom:0.5em;
+    padding-top:0.5em;
+    width:100%;
+}
+
+.match:hover{
+    background-color:#EFEFEF;
+}
+
+
+

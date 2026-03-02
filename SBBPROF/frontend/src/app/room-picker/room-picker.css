@@ -1,0 +1,23 @@
+.roomCategory{
+    margin-bottom:2em;
+    width:96%;
+    padding-bottom:0.5em;
+}
+
+.roomImage{
+    width:200px;
+    height:100px;
+    border:5px solid #eee;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+.imagebox{
+    height:100%;
+    padding-right:10px;
+}
+
+.roomselector{
+    margin-right:7px;
+    margin-bottom:5px;
+}

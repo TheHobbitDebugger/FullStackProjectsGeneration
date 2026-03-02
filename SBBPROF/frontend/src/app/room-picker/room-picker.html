@@ -1,0 +1,17 @@
+<div class="roomCategory w3-row rounded" >
+    <div class="w3-col m4 l4 s12">
+        <h4><b>{{roomCategory().name}} - {{roomCategory().price}} &euro; / notte </b></h4>
+        {{roomCategory().free}} libere <br />
+        {{roomCategory().description}} <br />
+        <br />
+        @for(roomName of roomCategory().roomNames; track roomName){
+            <button class="w3-btn w3-light-grey roomselector" (click)="selectCategory(roomCategory(), roomName)"> {{roomName}} </button>
+
+        }
+    </div>
+    <div class="w3-col m8 l8 s12 w3-right-align imagebox">
+        @for(image of roomCategory().images; track image){
+            <img src="img/rooms/{{image}}" alt="room image" class="roomImage"/>
+        }
+    </div>
+</div>

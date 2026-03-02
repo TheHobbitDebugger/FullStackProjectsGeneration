@@ -11,6 +11,8 @@
     <mapping directory="$PROJECT_DIR$/../06_Angular-Frontend" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../07_FullStack-NodeJS-Angular" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SBBPROF/backend" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SBBPROF/frontend" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../09_Database-MySql" vcs="Git" />
   </component>
 </project>

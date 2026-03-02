@@ -1,0 +1,28 @@
+#topmenu{
+    color: #020242;
+    font-size:14px;
+    margin-bottom:1.2em;
+}
+
+#logodiv IMG{
+    height:50px;
+    width:50px;
+}
+
+#logodiv{
+    text-align:center;
+}
+
+#userbox{
+    padding-right:2em;
+}
+
+#topmenu A{
+    text-decoration:none;
+    margin-left:1em;
+    margin-right:1em;
+}
+
+#topmenu A:hover{
+    border-bottom:1px solid #020242;
+}
