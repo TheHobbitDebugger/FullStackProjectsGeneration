@@ -1,0 +1,64 @@
+<div class="layout">
+
+  <!-- COLONNA SINISTRA — delegata interamente a GuestPicker -->
+  <div class="col-left">
+    <!-- [resetTrigger] passa il segnale di reset al figlio
+         (visitorSelected) ascolta l'evento emesso da GuestPicker quando l'utente sceglie un visitatore -->
+    <app-guest-picker
+      [resetTrigger]="resetTrigger()"
+      (visitorSelected)="onVisitorSelected($event)" />
+
+    <!-- pulsante cambia visitatore — visibile solo quando un visitatore è già selezionato -->
+    @if (visitorSelected()) {
+      <button mat-button (click)="resetVisitor()">
+        <mat-icon>arrow_back</mat-icon> Cambia visitatore
+      </button>
+    }
+  </div>
+
+  <!-- COLONNA DESTRA — riepilogo readonly + vendita -->
+  <div class="col-right">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput [value]="selectedVisitor()?.firstName ?? ''" readonly />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cognome</mat-label>
+      <input matInput [value]="selectedVisitor()?.lastName ?? ''" readonly />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data di nascita</mat-label>
+      <input matInput [value]="selectedVisitor()?.dateOfBirth ?? ''" readonly />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>SSN</mat-label>
+      <input matInput [value]="selectedVisitor()?.ssn ?? ''" readonly />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data biglietto</mat-label>
+      <input matInput type="date"
+             [ngModel]="date()" (ngModelChange)="date.set($event)"
+             [min]="today"
+             [disabled]="!visitorSelected()" />
+    </mat-form-field>
+
+    <button mat-flat-button (click)="submit()" [disabled]="!visitorSelected()">
+      <mat-icon>confirmation_number</mat-icon> Sell Ticket
+    </button>
+
+    @if (success()) {
+      <p class="success">Biglietto venduto con successo!</p>
+    }
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+  </div>
+
+</div>

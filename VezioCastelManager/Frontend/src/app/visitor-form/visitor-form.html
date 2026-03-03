@@ -1,0 +1,39 @@
+<div class="form-wrapper">
+
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput type="text" [(ngModel)]="form.firstName" />
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput type="text" [(ngModel)]="form.lastName" />
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput type="date" [(ngModel)]="form.dateOfBirth" />
+    <mat-icon matPrefix>cake</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>SSN (Codice Fiscale)</mat-label>
+    <input matInput type="text" [(ngModel)]="form.ssn" />
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+
+  <button mat-flat-button (click)="save()">
+    <mat-icon>save</mat-icon> SAVE
+  </button>
+
+  @if (success()) {
+    <p class="success">Visitatore salvato con successo!</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+</div>

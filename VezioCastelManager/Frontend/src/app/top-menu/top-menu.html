@@ -1,0 +1,26 @@
+<nav>
+  <!-- logo cliccabile che porta alla home -->
+  <a routerLink="/"><img src="img/logo.png" alt="logo" /></a>
+
+  <!-- link visibili solo se l'utente è loggato -->
+  @if (loggedUser()) {
+    <span class="separator">|</span>
+    <a routerLink="/visitor-form">NEW GUEST</a>
+    <span class="separator">|</span>
+    <a routerLink="/ticket-form">NEW TICKET</a>
+    <span class="separator">|</span>
+    <a routerLink="/ticket-search">TICKET SEARCH</a>
+    <span class="separator">|</span>
+    <span class="logged-user">
+      <mat-icon>account_circle</mat-icon>
+      <span class="user-info">
+        <span class="user-name">{{ loggedUser()!.firstName }} {{ loggedUser()!.lastName }}</span>
+        <span class="user-role">ADMIN</span>
+      </span>
+    </span>
+    <span class="separator">|</span>
+    <span class="logout" (click)="logout()">
+      <mat-icon>logout</mat-icon> LOGOUT
+    </span>
+  }
+</nav>

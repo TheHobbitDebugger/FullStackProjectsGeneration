@@ -1,0 +1,54 @@
+<!-- campo di ricerca: ogni carattere inviato a onSearchChange() -->
+<mat-form-field appearance="outline">
+  <mat-label>Cerca visitatore</mat-label>
+  <input matInput type="text"
+         [ngModel]="searchQuery()" (ngModelChange)="onSearchChange($event)"
+         placeholder="Nome o cognome" />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<!-- lista risultati: visibile solo se la ricerca ha trovato qualcosa -->
+@if (searchResults().length > 0) {
+  <div class="results">
+    @for (visitor of searchResults(); track visitor.id) {
+      <div class="result-row" (click)="selectVisitor(visitor)">
+        <mat-icon>person</mat-icon>
+        <span>{{ visitor.firstName }} {{ visitor.lastName }}</span>
+      </div>
+    }
+  </div>
+}
+
+<!-- form di creazione: compare automaticamente quando la ricerca non trova nessuno -->
+@if (showCreateForm()) {
+  <p class="not-found">Nessun visitatore trovato. Compila i dati per crearne uno nuovo.</p>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="newVisitor.firstName" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Cognome</mat-label>
+    <input matInput [(ngModel)]="newVisitor.lastName" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data di nascita</mat-label>
+    <input matInput type="date" [(ngModel)]="newVisitor.dateOfBirth" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>SSN (Codice fiscale)</mat-label>
+    <input matInput [(ngModel)]="newVisitor.ssn" />
+  </mat-form-field>
+
+  <button mat-flat-button (click)="createVisitor()">
+    <mat-icon>person_add</mat-icon> Crea visitatore
+  </button>
+}
+
+<!-- messaggio di errore dalla ricerca o dalla creazione -->
+@if (errorMessage()) {
+  <p class="error">{{ errorMessage() }}</p>
+}

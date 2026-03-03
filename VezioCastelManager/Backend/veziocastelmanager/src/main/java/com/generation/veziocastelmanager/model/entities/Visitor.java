@@ -25,6 +25,7 @@ public class Visitor
     private String          firstName;
     private String          lastName;
     private LocalDate       dateOfBirth;
+    private String          ssn;
 
     @OneToMany(mappedBy = "visitor")
     private List<Ticket>    tickets;

@@ -1,12 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TopMenu } from './top-menu/top-menu';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, TopMenu],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Frontend');
+  // anno corrente calcolato dinamicamente — si aggiorna da solo ogni anno
+  currentYear = new Date().getFullYear();
 }

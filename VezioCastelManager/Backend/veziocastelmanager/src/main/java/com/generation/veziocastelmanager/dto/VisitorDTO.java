@@ -18,4 +18,6 @@ public class VisitorDTO
     private String      lastName;
     @NotNull(message = "Date of birth is required")
     private LocalDate   dateOfBirth;
+    @NotBlank(message = "SSN is required")
+    private String      ssn;
 }

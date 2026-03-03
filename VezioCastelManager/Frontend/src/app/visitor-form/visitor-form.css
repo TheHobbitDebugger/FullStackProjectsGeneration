@@ -1,0 +1,27 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: auto;
+  padding: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}

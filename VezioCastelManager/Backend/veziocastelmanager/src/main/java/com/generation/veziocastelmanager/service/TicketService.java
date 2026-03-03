@@ -3,7 +3,9 @@ package com.generation.veziocastelmanager.service;
 import com.generation.veziocastelmanager.dto.TicketDTO;
 import com.generation.veziocastelmanager.mapper.TicketMapper;
 import com.generation.veziocastelmanager.model.entities.Ticket;
+import com.generation.veziocastelmanager.model.entities.Visitor;
 import com.generation.veziocastelmanager.model.repository.TicketRepository;
+import com.generation.veziocastelmanager.model.repository.VisitorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class TicketService
 {
     @Autowired
     private TicketRepository    ticketRepository;
+
+    @Autowired
+    private VisitorRepository   visitorRepository;
 
     @Autowired
     private TicketMapper        ticketMapper;
@@ -41,12 +46,18 @@ public class TicketService
     // usato da POST /vcm/api/tickets e PUT /vcm/api/tickets/{id}
     // converto il DTO in entità, poi chiamo applyPricePolicy() per calcolare il prezzo
     // prima di salvare — senza questa chiamata il prezzo rimane 0
-    // in alternativa si potrebbe usare @PrePersist sull'entità Ticket
     public TicketDTO save(@Valid TicketDTO ticketDTO)
     {
         Ticket ticket = ticketMapper.toEntity(ticketDTO);
+
+        // il mapper mette nel visitor solo l'id — dobbiamo caricare il visitor completo
+        // dal db per avere la dateOfBirth necessaria ad applyPricePolicy()
+        Visitor visitor = visitorRepository.findById(ticket.getVisitor().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Visitor not found"));
+        ticket.setVisitor(visitor);
+
         ticket.applyPricePolicy();  // 5€ se over 70, altrimenti 10€
-        ticket        = ticketRepository.save(ticket);
+        ticket = ticketRepository.save(ticket);
         return ticketMapper.toDTO(ticket);
     }
 
